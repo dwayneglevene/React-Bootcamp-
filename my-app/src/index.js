@@ -1,7 +1,7 @@
 import React, { Children } from 'react';
 import ReactDom from 'react-dom';
 import './index.css';
-
+// 3:05 in video
 // GLOBAL VARIABLES FOR ALL ITEMS IN THE BOOK COMPONENT
 
 //first book in the list {
@@ -32,10 +32,11 @@ function Booklist(){
 
      {/* //runs throught object with differnt books and maps prints them out
      id is neccessary for react to keep track of all objcts */}
+     {/* ...book spread that says give me all book props */}
      {books.map((book) =>{
        const {img,title,author} = book;
        return(
-         <Book key={book.id} book={book}></Book>
+         <Book key={book.id} {...book}></Book>
        )
      })}
    </section>
@@ -45,15 +46,22 @@ function Booklist(){
 //Book creation
 
 //img title aurhor can be passed and destrcutor in function parameters  
-const Book = (props) => {
-  const {img,title,author} = props.book;
-  //console.log(props);
+const Book = ({img,title,author,id}) => {
+
+  //attribute,eventHandler
+  //onClick, onMouseOver
+  //reference function example below call it in your onclick
+  const clickHandler = () =>{
+    alert("Snelloooooooo");
+  }
   return(
     <article className = 'book'>
         <img src = {img} />
+      {/* below example of inline function */}
       
-      <h1>{title}</h1>
+      <h1 onClick ={() => console.log(title)}>{title}</h1>
       <h4>{author}</h4>
+      <button type="button" onClick={clickHandler}></button>
     
     </article>
     
